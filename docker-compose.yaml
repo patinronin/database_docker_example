@@ -1,0 +1,27 @@
+version: '3'
+
+volumes:
+  local_investment_data: {}
+  local_investment_data_pgadmin: {}
+
+services:
+  postgres:
+    image: postgres:12.3
+    container_name: postgres_data_investment
+    ports:
+      - "5432:5432"
+    volumes:
+      - local_investment_data:/var/lib/postgresql/data
+    env_file:
+    - ./.envs/.postgres
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_data_investment
+    env_file:
+      - ./.envs/.pgadmin
+    depends_on:
+      - postgres
+    ports:
+      - "5050:5050"
+    volumes:
+      - local_investment_data_pgadmin:/var/lib/pgadmin
