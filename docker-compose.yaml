@@ -7,7 +7,7 @@ volumes:
 services:
   postgres:
     image: postgres:12.3
-    container_name: postgres_data_investment
+    container_name: ytGestionInversiones
     ports:
       - "5432:5432"
     volumes:
